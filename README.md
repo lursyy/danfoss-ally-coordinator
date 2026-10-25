@@ -1,7 +1,7 @@
 # Danfoss Ally Coordinator
 
-[![Lint](https://github.com/k3mpaxl/danfoss-ally-coordinator/actions/workflows/lint.yml/badge.svg)](https://github.com/k3mpaxl/danfoss-ally-coordinator/actions/workflows/lint.yml)
-[![Validate](https://github.com/k3mpaxl/danfoss-ally-coordinator/actions/workflows/validate.yml/badge.svg)](https://github.com/k3mpaxl/danfoss-ally-coordinator/actions/workflows/validate.yml)
+[![Lint](https://github.com/lursyy/danfoss-ally-coordinator/actions/workflows/lint.yml/badge.svg)](https://github.com/lursyy/danfoss-ally-coordinator/actions/workflows/lint.yml)
+[![Validate](https://github.com/lursyy/danfoss-ally-coordinator/actions/workflows/validate.yml/badge.svg)](https://github.com/lursyy/danfoss-ally-coordinator/actions/workflows/validate.yml)
 
 A Home Assistant HACS custom integration for the **Danfoss Ally electronic radiator thermostat (eTRV0103, order no. 014G2461) paired directly with ZHA**. It takes over the job of the Danfoss gateway: room temperature and window state for every valve, equal targets and shared load for several valves in a room, the valve clock, the adaptation run, valve exercise, the heating system's *heat available* signal and house-wide heat demand. No proprietary Danfoss gateway is required. Tested against Home Assistant **2026.10**.
 
@@ -54,7 +54,7 @@ Checked against Danfoss, [*Feature Catalogue Ally electronic Radiator Thermostat
 | §3.7 valve exercise (`0x4010`, `0x4011`) | **Integration, optional (on by default):** every coordinated valve gets the same exercise day (default Wednesday), staggered by 10 min from the start time (default 10:00), so they do not all move at night or at once. Written only when a valve differs. |
 | §1.2 time/DST | **Integration:** writes all six Time cluster attributes (time, status `0x02`, standard time zone, DST start/end of the current year, DST shift – from Home Assistant's time zone) weekly and at once when a valve reports *Invalid clock information*. ZHA's quirk only writes time, status and a time zone on binding. |
 | §3.1 weekly schedules | **Not managed.** |
-| §2.7 boiler integration (`0x4030` HeatAvailable) | **Integration, optional:** pick a binary sensor that is on while the heating system supplies heat (for example the [ECL Comfort 310](https://github.com/k3mpaxl/ecl310-hacs) integration's *Heat available*). Its state is written to every coordinated valve's *heat available* switch on each change and re-sent every 3 h. Told that no heat is available, the valve enters boiler mode for 48 h and stops requesting heat the system is not supplying. An unknown or unavailable source writes nothing. |
+| §2.7 boiler integration (`0x4030` HeatAvailable) | **Integration, optional:** pick a binary sensor that is on while the heating system supplies heat. Its state is written to every coordinated valve's *heat available* switch on each change and re-sent every 3 h. Told that no heat is available, the valve enters boiler mode for 48 h and stops requesting heat the system is not supplying. An unknown or unavailable source writes nothing. |
 | §3.9 OTA | **Not managed** by this integration. |
 
 The integration reacts to source-state changes and evaluates locally every 5 minutes, but suppresses redundant writes (§1.1). Its HA entity-state readback is **not** proof of a Zigbee-cluster acknowledgement.
@@ -69,7 +69,7 @@ The integration reacts to source-state changes and evaluates locally every 5 min
 
 ### HACS custom repository
 
-1. In HACS, add `https://github.com/k3mpaxl/danfoss-ally-coordinator` as a custom repository of category **Integration**.
+1. In HACS, add `https://github.com/lursyy/danfoss-ally-coordinator` as a custom repository of category **Integration**.
 2. Install **Danfoss Ally Coordinator**, then restart Home Assistant.
 3. Open **Settings → Devices & services → Add integration**, search for **Danfoss Ally Coordinator**, select the areas, and turn on **Enable Zigbee synchronization** when the discovered sources look right.
 
