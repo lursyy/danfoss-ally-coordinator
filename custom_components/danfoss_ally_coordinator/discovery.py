@@ -6,7 +6,7 @@ from collections.abc import Iterable
 from dataclasses import dataclass
 
 DANFOSS_MANUFACTURER = "Danfoss"
-DANFOSS_MODEL = "eTRV0103"
+DANFOSS_MODELS = frozenset({"eTRV0103", "eTRV0100"})
 ZHA_PLATFORM = "zha"
 TEMPERATURE_UNIQUE_SUFFIX = "-external_measured_room_sensor"
 WINDOW_UNIQUE_SUFFIX = "-external_open_window_detected"
@@ -154,7 +154,7 @@ def _zha_danfoss_target_ids(
         for device_id, device in devices.items()
         if device_id in zha_climate_device_ids
         and device.manufacturer == DANFOSS_MANUFACTURER
-        and device.model == DANFOSS_MODEL
+        and device.model in DANFOSS_MODELS
     }
 
 
@@ -355,3 +355,4 @@ async def async_discover_rooms(
         areas=areas,
         selected_area_ids=selected_area_ids,
     )
+
