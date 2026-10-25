@@ -2,15 +2,15 @@
   "domain": "danfoss_ally_coordinator",
   "name": "Danfoss Ally Coordinator",
   "codeowners": [
-    "@k3mpaxl"
+    "@lursyy"
   ],
   "config_flow": true,
   "dependencies": [
     "zha"
   ],
-  "documentation": "https://github.com/k3mpaxl/danfoss-ally-coordinator",
+  "documentation": "https://github.com/lursyy/danfoss-ally-coordinator",
   "integration_type": "hub",
   "iot_class": "local_push",
-  "issue_tracker": "https://github.com/k3mpaxl/danfoss-ally-coordinator/issues",
+  "issue_tracker": "https://github.com/lursyy/danfoss-ally-coordinator/issues",
   "version": "0.5.0"
 }
