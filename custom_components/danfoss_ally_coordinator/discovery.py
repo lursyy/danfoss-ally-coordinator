@@ -355,4 +355,3 @@ async def async_discover_rooms(
         areas=areas,
         selected_area_ids=selected_area_ids,
     )
-
